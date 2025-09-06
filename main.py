@@ -1,8 +1,11 @@
 import glob
 import streamlit as st
 import plotly.express as px
-
+import nltk
 from nltk.sentiment import SentimentIntensityAnalyzer
+
+# Download the lexicon at runtime (needed for Streamlit Cloud)
+nltk.download("vader_lexicon")
 
 filepaths = sorted(glob.glob("diary/*.txt"))
 
@@ -23,13 +26,10 @@ dates = [name.strip("txt").strip("diary/") for name in filepaths]
 st.title("Diary Tone")
 st.subheader("Positivity")
 pos_figure = px.line(x=dates, y=positivity,
-                     labels={"x":"Date", "y":"Positivity"})
-
+                     labels={"x": "Date", "y": "Positivity"})
 st.plotly_chart(pos_figure)
-
 
 st.subheader("Negativity")
-pos_figure = px.line(x=dates, y=negativity,
-                     labels={"x":"Date", "y":"Negativity"})
-
-st.plotly_chart(pos_figure)
+neg_figure = px.line(x=dates, y=negativity,
+                     labels={"x": "Date", "y": "Negativity"})
+st.plotly_chart(neg_figure)
