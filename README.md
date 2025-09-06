@@ -21,7 +21,6 @@ It visualizes your emotional trends over time with beautiful **Plotly line chart
 - Python Standard Libraries: `glob`  
 
 ---
----
 
 ##  Live Demo  
 Try it out instantly here:  
